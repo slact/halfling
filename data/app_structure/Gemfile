@@ -23,7 +23,7 @@ gem "mr-sparkle"
 #gem 'redis', :require => ["redis/connection/hiredis", "redis"]
 
 #gem 'i18n'
-gem "halfling", git: 'https://github.com/slact/halfling.git'
+gem "halfling"
 
 group :development do
   #mmm... pry...
