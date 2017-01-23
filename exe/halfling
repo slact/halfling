@@ -10,14 +10,13 @@ arg=OptionParser.new do |opts|
     cur_pwd = Dir.pwd
     dirname = name.downcase
     root = File.join(cur_pwd, dirname)
-    classname = name.split(/[-_]/).map.with_index{|x,i| i > 0 ? x.capitalize : x}.join
+    camelcase = name.split(/[-_]/).map.with_index{|x,i| i > 0 ? x.capitalize : x}.join
+    classname = camelcase.capitalize
     
     Dir.mkdir root rescue Errno::EEXIST
     
     Dir.chdir File.join(File.dirname(__FILE__),'../data/app_structure')
     skelly = Dir['**/*']
-    
-    puts root
     
     skelly.each do |f|
       if File.directory?(f)
@@ -30,6 +29,7 @@ arg=OptionParser.new do |opts|
       end 
     end
     
+    puts "New app #{classname} in #{root}."
   end
 end
 arg.banner=<<EOS
