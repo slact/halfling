@@ -16,13 +16,12 @@ module Hobbit
       CONTROLLERS_PATH='app/controllers/**/*.rb'
       
       def inherited(sub)
-        puts "inherited #{sub}, #{sub.superclass}, #{Base}"
-        
         if sub.superclass == Base
           #config stuff
           if File.exists?('config/env.yml')
             all_conf=YAML.load_file 'config/env.yml'
             conf=all_conf[ENV['RACK_ENV']]
+            @@templates={}
             @@config=conf
             @@application=sub
             use Rack::Config do |env|
@@ -34,8 +33,6 @@ module Hobbit
          
           class << sub
             def inherited(sub)
-              puts "#{self} REALLY inherited from #{sub}"
-              
               name=sub.name.match(".*?::(.*)Controller")[1].downcase!
               if name == "root"
                 @@root_controller = sub
@@ -99,17 +96,15 @@ module Hobbit
     end
   
     def initialize
-      if @@controller_routes
+      if self.class.class_variable_defined? :@@controller_routes
         @@controller_routes.each do |route, controller|
-          puts "map #{route} to #{controller.name}"
           @@application.map(route) do
             run controller.new
           end
         end
         @@controller_routes = nil
       end
-      if @@root_controller
-        puts "map root / to #{@@root_controller.name}"
+      if self.class.class_variable_defined? :@@root_controller
         root_controller = @@root_controller
         @@application.map("/") do
           run root_controller.new
