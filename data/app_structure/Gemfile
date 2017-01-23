@@ -1,0 +1,49 @@
+#!/usr/bin/ruby
+source 'https://rubygems.org'
+gem 'unicorn'
+
+#rack stuff
+gem 'warden'
+gem 'rack-contrib'
+gem 'rack-abstract-format'
+gem 'rack-respond_to'
+gem 'rack-referrals'
+gem 'muster'
+gem 'rack-attack'
+gem 'chrome_logger'
+gem 'rack-detect-tor'
+gem 'haml'
+gem 'racksh'
+gem 'redis-rack'
+
+#rack reloader
+gem "mr-sparkle"
+
+#gem 'hiredis'
+#gem 'redis', :require => ["redis/connection/hiredis", "redis"]
+
+#gem 'i18n'
+gem "halfling", github: 'slact/halfling'
+
+group :development do
+  #mmm... pry...
+  gem "pry"
+  gem "pry-coolline"
+  gem "pry-doc"
+  gem "pry-remote"
+  #gem "pry-rescue"
+  gem "pry-git"
+  gem "pry-theme"
+  gem "pry-byebug", "~> 1.3.3"
+  
+  gem 'awesome_print'
+  gem 'better_errors', github: 'grekko/better_errors'
+  gem 'binding_of_caller'
+  gem 'rake'
+end
+
+group :test do
+  gem 'minitest', require: 'minitest/autorun'
+  gem 'minitest-reporters'
+  gem 'rack-test', require: 'rack/test'
+end
