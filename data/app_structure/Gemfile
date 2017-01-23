@@ -23,7 +23,7 @@ gem "mr-sparkle"
 #gem 'redis', :require => ["redis/connection/hiredis", "redis"]
 
 #gem 'i18n'
-gem "halfling", github: 'slact/halfling'
+gem "halfling", git: 'https://github.com/slact/halfling.git'
 
 group :development do
   #mmm... pry...
@@ -37,7 +37,7 @@ group :development do
   gem "pry-byebug", "~> 1.3.3"
   
   gem 'awesome_print'
-  gem 'better_errors', github: 'grekko/better_errors'
+  gem 'better_errors', git: 'https://github.com/grekko/better_errors.git'
   gem 'binding_of_caller'
   gem 'rake'
 end

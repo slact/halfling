@@ -6,6 +6,7 @@ require 'erb'
 arg=OptionParser.new do |opts|
   opts.on("--new [AppName]", "create new Halfling app") do |name|
     require "fileutils"
+    require "bundler"
     
     cur_pwd = Dir.pwd
     dirname = name.downcase
@@ -30,6 +31,10 @@ arg=OptionParser.new do |opts|
     end
     
     puts "New app #{classname} in #{root}."
+    
+    Dir.chdir root
+    bundler = Bundler::CLI.start ["install"]
+    puts "All done."
   end
 end
 arg.banner=<<EOS
