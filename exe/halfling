@@ -7,6 +7,7 @@ arg=OptionParser.new do |opts|
   opts.on("--new [AppName]", "create new Halfling app") do |name|
     require "fileutils"
     require "bundler"
+    require "bundler/cli"
     
     cur_pwd = Dir.pwd
     dirname = name.downcase
