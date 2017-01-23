@@ -96,7 +96,7 @@ module Hobbit
     end
   
     def initialize
-      if self.class.class_variable_defined? :@@controller_routes
+      if self.class.class_variable_defined?(:@@controller_routes) && @@controller_routes
         @@controller_routes.each do |route, controller|
           @@application.map(route) do
             run controller.new
@@ -104,7 +104,7 @@ module Hobbit
         end
         @@controller_routes = nil
       end
-      if self.class.class_variable_defined? :@@root_controller
+      if self.class.class_variable_defined?(:@@root_controller) && @@root_controller
         root_controller = @@root_controller
         @@application.map("/") do
           run root_controller.new
