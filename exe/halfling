@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 require 'halfling'
 require "optparse"
-require "pry"
 require 'erb'
 
 arg=OptionParser.new do |opts|

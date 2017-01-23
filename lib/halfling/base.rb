@@ -1,7 +1,8 @@
 require "hobbit"
 require "hobbit/base"
 require "yaml"
-require "pry"
+require "halfling/request"
+require "halfling/response"
 
 module Hobbit
   class Base
