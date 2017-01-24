@@ -32,7 +32,6 @@ Gem::Specification.new do |spec|
     [:runtime, "hobbit-contrib"],
     [:runtime, "i18n"],
     [:runtime, 'rack-protection'],
-    [:runtime, 'sprockets'],
     [:runtime, 'tilt'],
     [:runtime, 'thin'],    
     
