@@ -111,22 +111,34 @@ module Hobbit
         end
         @@root_controller = nil
       end
+      @render_nesting_level = 0
       super
     end
     
     #template stuff
     def find_template(template)
       tmpl_path=@@templates[template.to_sym]
-      raise "template #{template} not found" unless tmpl_path
+      raise "template \"#{template}\" not found" unless tmpl_path
       tmpl_path
     end
     def default_layout
-      find_template :"layouts/application"
+      if @render_nesting_level <= 1
+        find_template :"layouts/application"
+      else
+        #with nested rendering, default layout is nil.
+        nil
+      end
     end
     def template_engine
       raise "template_engine shouldn't be called"
     end
-
+    
+    def render(*args)
+      @render_nesting_level += 1
+      ret = super
+      @render_nesting_level -= 1
+      ret
+    end
     
     #convenience stuff
     def set_content_type (val)
